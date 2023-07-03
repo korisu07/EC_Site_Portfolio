@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  # Node.js
+  node:
+    build: .
+    container_name: node
+    tty: true
+    ports:
+      - 3000:3000
+    # プロジェクトディレクトリにマウントする
+    volumes:
+      - .:/var/www
+      - node_modules:/app/node_modules
+    command: sh -c "npm run dev"
+    # ネットワーク
+    networks:
+      - default
+    logging:
+      driver: json-file
+      options:
+        max-file: '1'
+        max-size: 3m
+
+  # データベース
+  db:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_volumes:/var/lib/mysql
+      # 設定ファイルディレクトリにマウントする
+      - ./mysql/conf.d:/var/lib/conf.d
+      # DB初期化ディレクトリにマウントする
+      - ./mysql/init.d:/docker-entrypoint-initdb.d
+    # ネットワーク
+    networks:
+      - default
+    env_file: .env.local
+
+volumes:
+  node_modules:
+  mysql_volumes:
+
+# ネットワーク
+networks:
+  default:
+    driver: bridge
