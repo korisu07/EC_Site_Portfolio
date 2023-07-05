@@ -20,7 +20,7 @@
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
     "eslint-config-prettier": "^8.8.0",
-    "framer-motion": "^10.12.17",
+    "framer-motion": "^10.12.18",
     "mysql": "^2.18.1",
     "next": "13.4.7",
     "prettier": "^2.8.8",
