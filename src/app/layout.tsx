@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import './globals.css';
+import '/src/styles/reset/Globals.css';
 
 export const metadata: Metadata = {
   title: 'EC Portfolio',
@@ -16,14 +16,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
+interface Props {
   children: React.ReactNode;
-}) {
+}
+
+const RootLayout: React.FC<Props> = ({ children }) => {
   return (
     <html lang="ja">
       <body>{children}</body>
     </html>
   );
-}
+};
+
+export default RootLayout;
