@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import '/src/styles/reset/Globals.css';
+import '/src/styles/globals/Globals.scss';
 
 export const metadata: Metadata = {
   title: 'EC Portfolio',

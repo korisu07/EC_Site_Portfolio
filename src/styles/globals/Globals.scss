@@ -4,14 +4,14 @@
   --font-title: Yu Mincho, YuMincho, serif;
 
   --font-size-default: 14px;
-  --font-size-h1: 32px;
   --font-size-header: 2em;
+  --font-size-h1: 28px;
 
   --background: #f8f8f8;
   --font-color: #282828;
 
   --header-title-width: 200px;
-  --header-title-height: 54px;
+  --header-title-height: 42px;
   --header-nav-height: 52px;
   --header-height: calc(var(--header-title-height) + var(--header-nav-height));
 
@@ -34,6 +34,8 @@
   :root {
     --font-size-h1: 32px;
     --font-size-default: 16px;
+    --header-title-width: 220px;
+    --header-title-height: 54px;
   }
 }
 

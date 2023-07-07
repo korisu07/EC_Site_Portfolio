@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from '/src/styles/reset/Layout.module.css';
+import styles from '/src/styles/globals/Layout.module.scss';
 
 export default function Home() {
   const [click, setClick] = useState<boolean>();
