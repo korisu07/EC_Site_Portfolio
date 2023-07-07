@@ -21,17 +21,13 @@
   --color-light-blue: #a9e9ed;
   --color-middle-blue: #74bdc6;
   --color-dark-blue: #07889b;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
+  @media (prefers-color-scheme: dark) {
     --background: #282828;
     --font-color: #f6f6f6;
   }
-}
 
-@media (min-width: 550px) {
-  :root {
+  @media (min-width: 550px) {
     --font-size-h1: 32px;
     --font-size-default: 16px;
     --header-title-width: 220px;
@@ -53,6 +49,12 @@ body {
   font-size: var(--font-size-default);
 }
 
+html {
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
+
 body {
   color: var(--font-color);
   background: var(--background);
@@ -66,10 +68,4 @@ a {
 ul li,
 ol li {
   list-style-type: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
