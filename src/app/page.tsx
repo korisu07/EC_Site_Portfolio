@@ -1,5 +1,6 @@
 'use client';
 
+import { Card, CardBody, Text } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -17,57 +18,11 @@ export default function Home() {
 
   return (
     <>
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
-      text <br />
+      <Card>
+        <CardBody>
+          <Text>Hello!</Text>
+        </CardBody>
+      </Card>
     </>
   );
 }
