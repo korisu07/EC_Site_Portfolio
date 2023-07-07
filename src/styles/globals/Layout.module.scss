@@ -9,12 +9,6 @@
   padding-right: 20px;
 }
 
-.layout header,
-.layout main,
-.layout footer {
-  width: 100%;
-}
-
 .layout header {
   position: fixed;
   display: flex;
@@ -98,8 +92,13 @@
 }
 
 .layout main {
-  padding-top: var(--header-height);
+  width: 100%;
   min-height: calc(100vh - var(--header-height));
+}
+
+.layout main .content {
+  padding-top: calc(var(--header-height) + 20px);
+  padding-bottom: 30px;
 }
 
 .layout footer {
