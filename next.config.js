@@ -1,8 +1,9 @@
+const path = require('path');
 const isProduction = process.env.NODE_ENV === 'production';
 
 // @ts-check
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   env: {
     isProduction: isProduction,
   },
@@ -10,11 +11,12 @@ const nextConfig = {
   swcMinify: true,
   webpack: (config, context) => {
     config.watchOptions = {
-      poll: 1000,
-      aggregateTimeout: 300
-    }
-    return config
-  }
+      poll: 4000,
+      aggregateTimeout: 300,
+    };
+    return config;
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
 };
-
-module.exports = nextConfig;

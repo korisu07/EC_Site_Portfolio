@@ -22,5 +22,6 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "json.schemas": []
+  "json.schemas": [],
+  "cSpell.words": ["chakra"]
 }
