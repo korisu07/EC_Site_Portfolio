@@ -14,7 +14,7 @@ interface Props extends P {
 
 const ItemCardFrame: React.FC<Props> = ({ children, id }) => {
   return (
-    <Card maxW="sm">
+    <Card maxW="sm" h="100%">
       <CardBody>{children}</CardBody>
       <Divider />
       <CardFooter>
