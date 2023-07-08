@@ -16,11 +16,13 @@
   --header-height: calc(var(--header-title-height) + var(--header-nav-height));
 
   --footer-height: 350px;
-  --color-white: #f8f8f8;
+  --footer-top-link-height: calc(40px + 1rem);
 
+  --color-white: #f8f8f8;
   --color-light-blue: #a9e9ed;
-  --color-middle-blue: #74bdc6;
   --color-dark-blue: #07889b;
+  --color-bg-light-blue: #74bdc6;
+  --color-bg-dark-blue: #5d9aa3;
 
   @media (prefers-color-scheme: dark) {
     --background: #282828;
