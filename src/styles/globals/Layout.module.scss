@@ -22,8 +22,9 @@
   height: var(--header-height);
   z-index: 100;
   justify-content: space-between;
-  border-bottom: 1px solid var(--color-middle-blue);
+  border-bottom: 1px solid var(--color-bg-light-blue);
   font-size: 1em;
+  overflow: hidden;
 }
 
 .layout header h1 {
@@ -75,13 +76,13 @@
       width: 100%;
       line-height: 1.5em;
       height: 1.5em;
-      border-right: 1px solid var(--color-middle-blue);
+      border-right: 1px solid var(--color-bg-light-blue);
     }
   }
 
   a:hover {
-    color: var(--color-light-blue);
-    background-color: var(--color-middle-blue);
+    color: var(--color-white);
+    background-color: var(--color-bg-light-blue);
   }
 
   &:last-child {
@@ -105,21 +106,33 @@
   width: 100%;
   height: max-content;
   color: var(--color-white);
-  background: var(--color-middle-blue);
+  background: var(--color-bg-light-blue);
   padding: 30px 0;
+  overflow: hidden;
+}
+
+.layout .footerTopLinkBox {
+  width: 100%;
+  height: var(--footer-top-link-height);
+  line-height: 1;
+  padding: 20px 0;
+
+  text-align: center;
+  color: var(--color-white);
+  background: var(--color-bg-dark-blue);
 }
 
 .layout footer .container {
-  width: max-content;
   margin: 0 auto;
 
   @media (min-width: 501px) {
+    width: max-content;
     margin: 0 auto;
   }
 }
 
 .layout footer .content {
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -203,4 +216,8 @@
   @media (min-width: 501px) {
     padding: 0;
   }
+}
+
+.scrollLink {
+  cursor: pointer;
 }
