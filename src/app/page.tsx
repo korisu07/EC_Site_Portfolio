@@ -1,6 +1,8 @@
 'use client';
 
-import { Card, CardBody, Text } from '@chakra-ui/react';
+import ItemCard from '@/components/ui-parts/organisms/ItemCard';
+import { itemList } from '@/helper/testData';
+import { Grid, GridItem } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
@@ -18,11 +20,15 @@ export default function Home() {
 
   return (
     <>
-      <Card>
-        <CardBody>
-          <Text>Hello!</Text>
-        </CardBody>
-      </Card>
+      <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+        {itemList.map((item, i) => {
+          return (
+            <GridItem w="100%" key={i}>
+              <ItemCard item={item} />
+            </GridItem>
+          );
+        })}
+      </Grid>
     </>
   );
 }
