@@ -1,7 +1,7 @@
 export type Dict = { [key: string]: any };
 
 export interface P {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export interface ItemIface {
