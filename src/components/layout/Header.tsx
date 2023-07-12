@@ -19,17 +19,17 @@ const Header: React.FC = () => {
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link href="/shop/">
                 <span>商品一覧</span>
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link href="/shop/register">
                 <span>会員登録</span>
               </Link>
             </li>
             <li>
-              <Link href="/login">
+              <Link href="/shop/login">
                 <span>ログイン</span>
               </Link>
             </li>
