@@ -1,66 +1,45 @@
 'use client';
 
+import ValidateInput from '@/components/ui-form/atoms/ValidateInput';
+import ValidateForm from '@/components/ui-form/molecules/ValidateForm';
 import { Card, CardBody } from '@chakra-ui/react';
-import { useEffect } from 'react';
 
-import { useForm } from 'react-hook-form';
+import {
+  FieldValues,
+  SubmitErrorHandler,
+  SubmitHandler,
+} from 'react-hook-form';
 
 export default function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data: any) => console.log(data, 'OK!');
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    return console.log(data, 'OK!');
+  };
+  const onError: SubmitErrorHandler<FieldValues> = (err) => {
+    return console.log(err, 'NG!');
+  };
 
   return (
     <>
       <Card>
         <CardBody>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
+          <ValidateForm onSubmit={onSubmit} onError={onError}>
+            <ValidateInput
+              name="mail"
               type="text"
-              placeholder="First name"
-              {...register('First name', { required: true, maxLength: 80 })}
-            />
-            <input
-              type="text"
-              placeholder="Last name"
-              {...register('Last name', { required: true, maxLength: 100 })}
-            />
-            <input
-              type="text"
-              placeholder="Email"
-              {...register('Email', { required: true, pattern: /^\S+@\S+$/i })}
-            />
-            <input
-              type="tel"
-              placeholder="Mobile number"
-              {...register('Mobile number', {})}
-            />
-            <select {...register('Title', { required: true })}>
-              <option value="Mr">Mr</option>
-              <option value="Mrs">Mrs</option>
-              <option value="Miss">Miss</option>
-              <option value="Dr">Dr</option>
-            </select>
-
-            <input
-              {...register('Developer', { required: true })}
-              type="radio"
-              value="Yes"
-            />
-            <input
-              {...register('Developer', { required: true })}
-              type="radio"
-              value="No"
+              placeholder="メールアドレス"
+              validate={{
+                required: true,
+                maxLength: 80,
+              }}
             />
 
-            <input type="submit" />
-          </form>
+            <ValidateInput
+              name="password"
+              type="password"
+              placeholder="パスワード"
+              validate={{ required: true, maxLength: 80 }}
+            />
+          </ValidateForm>
         </CardBody>
       </Card>
     </>
