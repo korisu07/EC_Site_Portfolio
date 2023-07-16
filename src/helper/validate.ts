@@ -36,6 +36,8 @@ export const getErrorMessages = (
   // カスタム文字列がセットされていない場合
   if (!arr || !arr.length) {
     return message;
+  } else if (!message) {
+    return '入力エラーです。';
   } else {
     // カスタム文字列を当てはめる処理
     arr.map((text, i) => {

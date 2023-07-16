@@ -1,19 +1,22 @@
 'use client';
 
+import styles from '@/styles/components/Form.module.scss';
 import { P } from '@/types/interface';
+import { yupResolver } from '@hookform/resolvers/yup';
+import classNames from 'classnames';
 import {
   FieldValues,
   FormProvider,
-  RegisterOptions,
   SubmitErrorHandler,
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
+import { AnyObject, ObjectSchema } from 'yup';
 
 interface Props extends P {
-  validate?: RegisterOptions<FieldValues, string>;
+  validateSchema: ObjectSchema<FieldValues, AnyObject, any, ''>;
   btnText?: string;
-  className?: string;
+  btnClassName?: string;
   disabled?: boolean;
   onSubmit: SubmitHandler<FieldValues>;
   onError?: SubmitErrorHandler<FieldValues>;
@@ -21,13 +24,16 @@ interface Props extends P {
 
 const ValidateForm: React.FC<Props> = ({
   children,
+  validateSchema,
   btnText = '送信',
-  className,
+  btnClassName,
   disabled = false,
   onSubmit,
   onError,
 }) => {
-  const methods = useForm();
+  const methods = useForm({
+    resolver: yupResolver(validateSchema),
+  });
   const { handleSubmit } = methods;
 
   return (
@@ -35,7 +41,7 @@ const ValidateForm: React.FC<Props> = ({
       <form onSubmit={handleSubmit(onSubmit, onError)}>
         {children}
         <input
-          className={className}
+          className={classNames(styles.submit, btnClassName)}
           type="submit"
           name={btnText}
           disabled={disabled}

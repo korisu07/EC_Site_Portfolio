@@ -1,26 +1,31 @@
 'use client';
 
-import { getErrorMessages } from '@/helper/validate';
+import styles from '@/styles/components/Form.module.scss';
+import classNames from 'classnames';
 import { HTMLInputTypeAttribute } from 'react';
-import { FieldValues, RegisterOptions, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 interface Props {
   type: HTMLInputTypeAttribute;
   name: string;
+  label: string;
   defaultValue?: string;
   placeholder?: string;
-  validate?: RegisterOptions<FieldValues, string>;
-  className?: string;
+  customErrMessage?: string;
+  labelClassName?: string;
+  inputClassName?: string;
   disabled?: boolean;
 }
 
 const ValidateInput: React.FC<Props> = ({
   type,
   name,
+  label,
   defaultValue = '',
   placeholder = '',
-  validate,
-  className,
+  customErrMessage,
+  labelClassName,
+  inputClassName,
   disabled = false,
 }) => {
   const {
@@ -28,21 +33,29 @@ const ValidateInput: React.FC<Props> = ({
     formState: { errors },
   } = useFormContext();
 
-  const error = errors[name];
+  // const error = errors[name];
+  const errMessage = customErrMessage;
+  // ||
+  // (typeof error?.type == 'string' && getErrorMessages(error.type, [label]));
 
   return (
     <>
+      <label
+        className={classNames(styles.label, labelClassName)}
+        htmlFor={name}
+      >
+        {label}
+      </label>
       <input
-        className={className}
+        id={name}
+        className={classNames(styles.input, inputClassName)}
         defaultValue={defaultValue}
         type={type}
         placeholder={placeholder}
         disabled={disabled}
-        {...register(name, validate)}
+        {...register(name)}
       />
-      {typeof error?.type == 'string' && (
-        <div>{getErrorMessages(error.type, [name])}</div>
-      )}
+      <div>{errMessage || ''}</div>
     </>
   );
 };

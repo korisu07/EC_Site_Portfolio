@@ -3,6 +3,7 @@
 import ValidateInput from '@/components/ui-form/atoms/ValidateInput';
 import ValidateForm from '@/components/ui-form/molecules/ValidateForm';
 import { Card, CardBody } from '@chakra-ui/react';
+import * as yup from 'yup';
 
 import {
   FieldValues,
@@ -18,26 +19,34 @@ export default function Login() {
     return console.log(err, 'NG!');
   };
 
+  const schema = yup
+    .object({
+      mail: yup.string().email().required(),
+      password: yup.string().required(),
+    })
+    .required();
+
   return (
     <>
       <Card>
         <CardBody>
-          <ValidateForm onSubmit={onSubmit} onError={onError}>
+          <ValidateForm
+            onSubmit={onSubmit}
+            onError={onError}
+            validateSchema={schema}
+          >
             <ValidateInput
               name="mail"
+              label="メールアドレス"
               type="text"
               placeholder="メールアドレス"
-              validate={{
-                required: true,
-                maxLength: 80,
-              }}
             />
 
             <ValidateInput
               name="password"
+              label="パスワード"
               type="password"
               placeholder="パスワード"
-              validate={{ required: true, maxLength: 80 }}
             />
           </ValidateForm>
         </CardBody>

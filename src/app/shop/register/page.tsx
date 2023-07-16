@@ -1,68 +1,65 @@
 'use client';
 
-import { Card, CardBody } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import ValidateInput from '@/components/ui-form/atoms/ValidateInput';
+import ValidateForm from '@/components/ui-form/molecules/ValidateForm';
+import {
+  FieldValues,
+  SubmitErrorHandler,
+  SubmitHandler,
+} from 'react-hook-form';
+import * as yup from 'yup';
 
-import { useForm } from 'react-hook-form';
+import HalfCardFrame from '@/components/ui-parts/molecules/HalfCardFrame';
+import styles from '@/styles/pages/Register.module.scss';
 
 export default function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data: any) => console.log(data, 'OK!');
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    return console.log(data, 'OK!');
+  };
+  const onError: SubmitErrorHandler<FieldValues> = (err) => {
+    return console.log(err, 'NG!');
+  };
+
+  const schema = yup
+    .object({
+      mail: yup.string().email().required(),
+      password: yup.string().required(),
+    })
+    .required();
 
   return (
-    <>
-      <Card>
-        <CardBody>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              type="text"
-              placeholder="First name"
-              {...register('First name', { required: true, maxLength: 80 })}
-            />
-            <input
-              type="text"
-              placeholder="Last name"
-              {...register('Last name', { required: true, maxLength: 100 })}
-            />
-            <input
-              type="text"
-              placeholder="Email"
-              {...register('Email', { required: true, pattern: /^\S+@\S+$/i })}
-            />
-            <input
-              type="tel"
-              placeholder="Mobile number"
-              {...register('Mobile number', {})}
-            />
-            <select {...register('Title', { required: true })}>
-              <option value="Mr">Mr</option>
-              <option value="Mrs">Mrs</option>
-              <option value="Miss">Miss</option>
-              <option value="Dr">Dr</option>
-            </select>
+    <div className={styles.register}>
+      <HalfCardFrame
+        title="会員登録"
+        titleClassName={styles.cardTitle}
+        bodyClassName={styles.card}
+      >
+        <ValidateForm
+          onSubmit={onSubmit}
+          onError={onError}
+          validateSchema={schema}
+          btnText="登録"
+        >
+          <ValidateInput
+            name="mail"
+            label="メールアドレス"
+            type="text"
+            placeholder="半角英数字で入力してください"
+            // validate={{
+            //   required: true,
+            //   maxLength: 80,
+            // }}
+          />
 
-            <input
-              {...register('Developer', { required: true })}
-              type="radio"
-              value="Yes"
-            />
-            <input
-              {...register('Developer', { required: true })}
-              type="radio"
-              value="No"
-            />
-
-            <input type="submit" />
-          </form>
-        </CardBody>
-      </Card>
-    </>
+          <ValidateInput
+            name="password"
+            label="パスワード"
+            type="password"
+            placeholder="半角英数字で入力してください"
+            // validate={{ required: true, maxLength: 80 }}
+          />
+        </ValidateForm>
+      </HalfCardFrame>
+    </div>
   );
 }
