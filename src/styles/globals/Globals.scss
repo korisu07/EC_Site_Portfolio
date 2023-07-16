@@ -23,6 +23,7 @@
   --color-dark-blue: #07889b;
   --color-bg-light-blue: #74bdc6;
   --color-bg-dark-blue: #5d9aa3;
+  --color-gray: #dcdcdc;
 
   @media (prefers-color-scheme: dark) {
     --background: #282828;
@@ -60,6 +61,15 @@ html {
 body {
   color: var(--font-color);
   background: var(--background);
+}
+
+main,
+main * {
+  font-size: calc(var(--font-size-default) * 1.2);
+
+  @media (min-width: 801px) {
+    font-size: var(--font-size-default);
+  }
 }
 
 a {
