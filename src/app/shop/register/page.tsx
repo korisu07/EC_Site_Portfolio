@@ -49,6 +49,7 @@ export default function Login() {
             type="text"
             autoComplete="name"
             placeholder="氏名を入力してください"
+            enterKeyHint="next"
           />
 
           <ValidateInput
@@ -57,6 +58,7 @@ export default function Login() {
             type="email"
             autoComplete="email"
             placeholder="半角英数字で入力してください"
+            enterKeyHint="next"
           />
 
           <ValidateInput
@@ -65,6 +67,7 @@ export default function Login() {
             type="password"
             autoComplete="new-password"
             placeholder="半角英数字で入力してください"
+            enterKeyHint="next"
           />
 
           <ValidateInput
@@ -72,6 +75,7 @@ export default function Login() {
             label="パスワード(確認用)"
             type="password"
             placeholder="もう一度入力してください"
+            enterKeyHint="send"
           />
         </ValidateForm>
       </HalfCardFrame>

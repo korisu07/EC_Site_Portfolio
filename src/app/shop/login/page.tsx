@@ -46,6 +46,7 @@ export default function Login() {
           type="email"
           autoComplete="email"
           placeholder="半角英数字で入力してください"
+          enterKeyHint="next"
         />
 
         <ValidateInput
@@ -54,6 +55,7 @@ export default function Login() {
           type="password"
           autoComplete="current-password"
           placeholder="半角英数字で入力してください"
+          enterKeyHint="send"
         />
       </ValidateForm>
     </HalfCardFrame>

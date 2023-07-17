@@ -17,6 +17,7 @@ interface Props {
   disabled?: boolean;
   autoComplete?: string;
   inputMode?: NonNullable<JSX.IntrinsicElements['input']['inputMode']>;
+  enterKeyHint?: NonNullable<JSX.IntrinsicElements['input']['enterKeyHint']>;
 }
 
 const ValidateInput: React.FC<Props> = ({
@@ -31,6 +32,7 @@ const ValidateInput: React.FC<Props> = ({
   disabled = false,
   autoComplete = 'off',
   inputMode,
+  enterKeyHint,
 }) => {
   const [validClass, setValidClass] = useState<string>('');
   const [errMessage, setErrMessage] = useState<string>('');
@@ -82,6 +84,7 @@ const ValidateInput: React.FC<Props> = ({
         placeholder={placeholder}
         disabled={disabled}
         autoComplete={autoComplete}
+        enterKeyHint={enterKeyHint}
         {...register(name)}
       />
       <small className={classNames(styles.errMessage, inputClassName)}>
