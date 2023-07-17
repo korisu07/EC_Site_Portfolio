@@ -12,11 +12,39 @@ input.input {
   max-width: 300px;
   border: 1px solid var(--color-gray);
   border-radius: 5px;
-
+  line-height: 1;
+  padding: 3px;
   margin: 0 auto;
 
-  &:last-child {
-    margin-bottom: 0;
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    border-color: var(--color-bg-light-blue);
+    outline: 2px solid var(--color-bg-light-blue);
+  }
+
+  &.valid {
+    border-color: var(--color-green);
+    outline: none;
+
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+      border-color: var(--color-green);
+      outline: 2px solid var(--color-green);
+    }
+  }
+
+  &.invalid {
+    border-color: var(--color-red);
+    outline: 1px solid var(--color-red);
+
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+      border-color: var(--color-red);
+      outline: 2px solid var(--color-red);
+    }
   }
 }
 
