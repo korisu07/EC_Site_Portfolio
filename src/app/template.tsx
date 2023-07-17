@@ -6,6 +6,9 @@ import { P } from '@/types/interface';
 import { useEffect, useState } from 'react';
 import styles from '/src/styles/globals/Layout.module.scss';
 
+// Yup カスタム設定
+import '@/helper/lib/yup.custom';
+
 interface Props extends P {
   /* empty */
 }

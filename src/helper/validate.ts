@@ -1,33 +1,50 @@
+import { getLabel } from '@/helper/lib/yup.locale';
 import * as yup from 'yup';
 
 const getRequired = (param: any) => {
-  return param.label ? `${param.label}は必須項目です。` : '必須項目です。';
+  return getLabel(param) + '必須項目です。';
 };
 
 const getOneOf = (param: any) => {
-  return param.label ? `${param.label}が一致しません。` : 'が一致しません。';
+  return getLabel(param, 'が') + '一致しません。';
 };
 
 export const loginSchema = yup
   .object({
-    mail: yup.string().label('メールアドレス').max(80).required(getRequired),
-    password: yup.string().label('パスワード').max(20).required(getRequired),
+    email: yup
+      .string()
+      .label('メールアドレス')
+      .required(getRequired)
+      .email()
+      .max(80),
+    currentPassword: yup
+      .string()
+      .label('パスワード')
+      .required(getRequired)
+      .max(20),
   })
   .required();
 
 export const registerSchema = yup
   .object({
-    mail: yup
+    userName: yup.string().label('氏名').required(getRequired).max(80),
+    email: yup
       .string()
       .label('メールアドレス')
+      .required(getRequired)
       .max(80)
-      .email()
-      .required(getRequired),
-    password: yup.string().label('パスワード').max(20).required(getRequired),
+      .email(),
+    newPassword: yup
+      .string()
+      .label('パスワード')
+      .required(getRequired)
+      .isPassword()
+      .isRange(8, 20),
     confirmPassword: yup
       .string()
       .label('パスワード(確認用)')
-      .oneOf([yup.ref('password')], getOneOf)
-      .required(getRequired),
+      .required(getRequired)
+      .isPassword()
+      .oneOf([yup.ref('newPassword')], getOneOf),
   })
   .required();
