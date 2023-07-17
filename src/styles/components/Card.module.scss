@@ -1,8 +1,24 @@
 .cardFrame {
   width: 100%;
+
+  .cardContent {
+    padding-bottom: 30px;
+  }
 }
 
 .halfCardFrame {
   max-width: 600px;
   margin: 0 auto;
+
+  .cardContent {
+    padding-bottom: 30px;
+  }
+
+  h2 {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    text-align: center;
+  }
 }

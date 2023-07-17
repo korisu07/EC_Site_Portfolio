@@ -7,9 +7,6 @@
   --font-size-header: 2em;
   --font-size-h1: 28px;
 
-  --background: #f8f8f8;
-  --font-color: #282828;
-
   --header-title-width: 200px;
   --header-title-height: 42px;
   --header-nav-height: 52px;
@@ -19,11 +16,15 @@
   --footer-top-link-height: calc(40px + 1rem);
 
   --color-white: #f8f8f8;
+  --color-black: #282828;
   --color-light-blue: #a9e9ed;
   --color-dark-blue: #07889b;
   --color-bg-light-blue: #74bdc6;
   --color-bg-dark-blue: #5d9aa3;
   --color-gray: #dcdcdc;
+  --color-red: #f36b6b;
+
+  --background: --color-white;
 
   @media (prefers-color-scheme: dark) {
     --background: #282828;
@@ -59,7 +60,7 @@ html {
 }
 
 body {
-  color: var(--font-color);
+  color: var(--color-dark-blue);
   background: var(--background);
 }
 

@@ -3,6 +3,7 @@
 import { P } from '@/types/interface';
 import { Card, CardBody, Heading } from '@chakra-ui/react';
 
+import styles from '@/styles/components/Card.module.scss';
 import classNames from 'classnames';
 
 interface Props extends P {
@@ -19,8 +20,8 @@ const HalfCardFrame: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <Card className={classNames(bodyClassName)}>
-        <CardBody>
+      <Card className={classNames(styles.halfCardFrame, bodyClassName)}>
+        <CardBody className={styles.cardContent}>
           {title && (
             <Heading size="md" className={classNames(titleClassName)}>
               {title}
