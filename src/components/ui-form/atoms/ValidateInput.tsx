@@ -2,7 +2,7 @@
 
 import styles from '@/styles/components/Form.module.scss';
 import classNames from 'classnames';
-import { HTMLInputTypeAttribute } from 'react';
+import { HTMLInputTypeAttribute, useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 interface Props {
@@ -15,6 +15,8 @@ interface Props {
   labelClassName?: string;
   inputClassName?: string;
   disabled?: boolean;
+  autoComplete?: string;
+  inputMode?: NonNullable<JSX.IntrinsicElements['input']['inputMode']>;
 }
 
 const ValidateInput: React.FC<Props> = ({
@@ -27,16 +29,41 @@ const ValidateInput: React.FC<Props> = ({
   labelClassName,
   inputClassName,
   disabled = false,
+  autoComplete = 'off',
+  inputMode,
 }) => {
+  const [validClass, setValidClass] = useState<string>('');
+  const [errMessage, setErrMessage] = useState<string>('');
+
   const {
     register,
-    formState: { errors },
+    trigger,
+    formState: { isSubmitted },
+    getFieldState,
+    getValues,
   } = useFormContext();
 
-  const errMessage =
-    customErrMessage || typeof errors[name]?.message == 'string'
-      ? (errors[name]?.message as string)
-      : '';
+  const fieldState = getFieldState(name);
+  const fieldValues = getValues(name);
+
+  useEffect(() => {
+    if (!name) return;
+    const errMessage = customErrMessage || fieldState.error?.message || '';
+    setErrMessage(errMessage);
+  }, [fieldState]);
+
+  useEffect(() => {
+    if (!isSubmitted) return;
+
+    trigger(name);
+  }, [fieldValues]);
+
+  useEffect(() => {
+    if (!isSubmitted) return;
+
+    const className = fieldState.invalid ? styles.invalid : styles.valid;
+    setValidClass(className);
+  }, [isSubmitted, fieldState]);
 
   return (
     <>
@@ -47,12 +74,14 @@ const ValidateInput: React.FC<Props> = ({
         {label}
       </label>
       <input
+        inputMode={inputMode}
         id={name}
-        className={classNames(styles.input, inputClassName)}
+        className={classNames(styles.input, validClass, inputClassName)}
         defaultValue={defaultValue}
         type={type}
         placeholder={placeholder}
         disabled={disabled}
+        autoComplete={autoComplete}
         {...register(name)}
       />
       <small className={classNames(styles.errMessage, inputClassName)}>
