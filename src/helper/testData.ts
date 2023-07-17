@@ -1,6 +1,6 @@
 // TODO: DBデータを投入しSQL作成後、このファイルは削除予定
 
-import { ItemIface } from '@/types/interface';
+import ItemIface from '@/types/itemIface';
 
 // 商品データ
 export const itemList: ItemIface[] = [

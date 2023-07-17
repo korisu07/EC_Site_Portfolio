@@ -1,5 +1,5 @@
 import ItemCardFrame from '@/components/ui-parts/molecules/ItemCardFrame';
-import { ItemIface } from '@/types/interface';
+import ItemIface from '@/types/itemIface';
 import { Heading, Image, Stack, Text } from '@chakra-ui/react';
 
 interface Props {
