@@ -1,4 +1,5 @@
 import CustomChakraProviders from '@/components/modules/CustomChakraProviders';
+import '@/helper/lib/yup.custom';
 import { P } from '@/types/interface';
 import { Metadata } from 'next';
 import '/src/styles/globals/Globals.scss';

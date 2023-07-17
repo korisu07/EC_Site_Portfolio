@@ -33,10 +33,10 @@ const ValidateInput: React.FC<Props> = ({
     formState: { errors },
   } = useFormContext();
 
-  // const error = errors[name];
-  const errMessage = customErrMessage;
-  // ||
-  // (typeof error?.type == 'string' && getErrorMessages(error.type, [label]));
+  const errMessage =
+    customErrMessage || typeof errors[name]?.message == 'string'
+      ? (errors[name]?.message as string)
+      : '';
 
   return (
     <>
@@ -55,7 +55,9 @@ const ValidateInput: React.FC<Props> = ({
         disabled={disabled}
         {...register(name)}
       />
-      <div>{errMessage || ''}</div>
+      <small className={classNames(styles.errMessage, inputClassName)}>
+        {errMessage || '　'}
+      </small>
     </>
   );
 };

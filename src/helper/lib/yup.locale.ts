@@ -4,7 +4,7 @@ const labelText = (label: string | undefined) => {
   return label ? `${label}は` : '';
 };
 
-const config: yup.LocaleObject = {
+const yupConfig: yup.LocaleObject = {
   string: {
     min: (param) =>
       labelText(param.label) + `${param.min}文字以上で入力してください。`,
@@ -42,5 +42,4 @@ const config: yup.LocaleObject = {
   },
 };
 
-yup.setLocale(config);
-export default yup;
+export default yupConfig;

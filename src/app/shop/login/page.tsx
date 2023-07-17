@@ -3,8 +3,8 @@
 import ValidateInput from '@/components/ui-form/atoms/ValidateInput';
 import ValidateForm from '@/components/ui-form/molecules/ValidateForm';
 import { Card, CardBody } from '@chakra-ui/react';
-import * as yup from 'yup';
 
+import { loginSchema } from '@/helper/validate';
 import {
   FieldValues,
   SubmitErrorHandler,
@@ -19,13 +19,6 @@ export default function Login() {
     return console.log(err, 'NG!');
   };
 
-  const schema = yup
-    .object({
-      mail: yup.string().email().required(),
-      password: yup.string().required(),
-    })
-    .required();
-
   return (
     <>
       <Card>
@@ -33,20 +26,20 @@ export default function Login() {
           <ValidateForm
             onSubmit={onSubmit}
             onError={onError}
-            validateSchema={schema}
+            validateSchema={loginSchema}
           >
             <ValidateInput
               name="mail"
               label="メールアドレス"
               type="text"
-              placeholder="メールアドレス"
+              placeholder="半角英数字で入力してください"
             />
 
             <ValidateInput
               name="password"
               label="パスワード"
               type="password"
-              placeholder="パスワード"
+              placeholder="半角英数字で入力してください"
             />
           </ValidateForm>
         </CardBody>

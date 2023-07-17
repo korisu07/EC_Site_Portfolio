@@ -1,49 +1,33 @@
-import { LiteralUnion, RegisterOptions } from 'react-hook-form';
+import * as yup from 'yup';
 
-const errorMessages: ErrorIface = {
-  required: '{0}は必須項目です。',
-  min: '{0}の下限は{1}です。',
-  max: '{0}の上限は{1}です',
-  maxLength: '{0}は{1}文字以内で入力してください。',
-  minLength: '{0}は{1}文字以上で入力してください。',
-  validate: '',
-  disabled: '',
-  pattern: '',
-  value: '',
-  setValueAs: '',
-  shouldUnregister: '',
-  onChange: '',
-  onBlur: '',
-  deps: '',
-  valueAsNumber: '',
-  valueAsDate: '',
+const getRequired = (param: any) => {
+  return param.label ? `${param.label}は必須項目です。` : '必須項目です。';
 };
 
-type ErrorIface = {
-  [key in LiteralUnion<keyof RegisterOptions, string>]: string;
+const getOneOf = (param: any) => {
+  return param.label ? `${param.label}が一致しません。` : 'が一致しません。';
 };
 
-// エラーメッセージ取得
-export const getErrorMessages = (
-  errName?: LiteralUnion<keyof RegisterOptions, string>,
-  arr?: string[],
-) => {
-  // エラー名がセットされていない場合は汎用メッセージ
-  if (!errName) return '入力エラーです。';
+export const loginSchema = yup
+  .object({
+    mail: yup.string().label('メールアドレス').max(80).required(getRequired),
+    password: yup.string().label('パスワード').max(20).required(getRequired),
+  })
+  .required();
 
-  // エラー名からメッセージを取得
-  let message = errorMessages[errName];
-  // カスタム文字列がセットされていない場合
-  if (!arr || !arr.length) {
-    return message;
-  } else if (!message) {
-    return '入力エラーです。';
-  } else {
-    // カスタム文字列を当てはめる処理
-    arr.map((text, i) => {
-      const index = `{${i}}`;
-      message = message.replace(index, text);
-    });
-    return message;
-  }
-};
+export const registerSchema = yup
+  .object({
+    mail: yup
+      .string()
+      .label('メールアドレス')
+      .max(80)
+      .email()
+      .required(getRequired),
+    password: yup.string().label('パスワード').max(20).required(getRequired),
+    confirmPassword: yup
+      .string()
+      .label('パスワード(確認用)')
+      .oneOf([yup.ref('password')], getOneOf)
+      .required(getRequired),
+  })
+  .required();
