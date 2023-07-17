@@ -27,7 +27,7 @@ export const loginSchema = yup
 
 export const registerSchema = yup
   .object({
-    userName: yup.string().label('氏名').required(getRequired).max(80),
+    name: yup.string().label('氏名').required(getRequired).max(80),
     email: yup
       .string()
       .label('メールアドレス')
