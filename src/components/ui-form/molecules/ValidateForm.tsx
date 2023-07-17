@@ -38,12 +38,12 @@ const ValidateForm: React.FC<Props> = ({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit, onError)}>
+      <form onSubmit={handleSubmit(onSubmit, onError)} noValidate>
         {children}
         <input
           className={classNames(styles.submit, btnClassName)}
           type="submit"
-          name={btnText}
+          value={btnText}
           disabled={disabled}
         />
       </form>
