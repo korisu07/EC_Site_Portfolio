@@ -3,11 +3,7 @@
 import ValidateInput from '@/components/ui-form/atoms/ValidateInput';
 import ValidateForm from '@/components/ui-form/molecules/ValidateForm';
 
-import {
-  FieldValues,
-  SubmitErrorHandler,
-  SubmitHandler,
-} from 'react-hook-form';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
 
 import HalfCardFrame from '@/components/ui-parts/molecules/HalfCardFrame';
 import { getStringField } from '@/helper/submit';
@@ -25,9 +21,6 @@ export default function Login() {
       password: getStringField(data, 'newPassword'),
     });
   };
-  const onError: SubmitErrorHandler<FieldValues> = (err) => {
-    return console.log(err, 'NG!');
-  };
 
   useEffect(() => {
     if (!data) return;
@@ -39,7 +32,6 @@ export default function Login() {
       <HalfCardFrame title="会員登録">
         <ValidateForm
           onSubmit={onSubmit}
-          onError={onError}
           validateSchema={registerSchema}
           btnText="登録"
         >

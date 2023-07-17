@@ -8,11 +8,7 @@ import { getStringField } from '@/helper/submit';
 import { loginSchema } from '@/helper/validate';
 import { LoginIface } from '@/types/accountIface';
 import { useEffect, useState } from 'react';
-import {
-  FieldValues,
-  SubmitErrorHandler,
-  SubmitHandler,
-} from 'react-hook-form';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
 
 export default function Login() {
   const [data, setData] = useState<LoginIface>();
@@ -22,9 +18,6 @@ export default function Login() {
       email: getStringField(data, 'email'),
       password: getStringField(data, 'currentPassword'),
     });
-  };
-  const onError: SubmitErrorHandler<FieldValues> = (err) => {
-    console.log(err, 'NG!');
   };
 
   useEffect(() => {
@@ -36,7 +29,6 @@ export default function Login() {
     <HalfCardFrame title="ログイン">
       <ValidateForm
         onSubmit={onSubmit}
-        onError={onError}
         validateSchema={loginSchema}
         btnText="ログイン"
       >
