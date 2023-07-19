@@ -6,6 +6,7 @@ import ValidateForm from '@/components/ui-form/molecules/ValidateForm';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 
 import HalfCardFrame from '@/components/ui-parts/molecules/HalfCardFrame';
+import { postRegister } from '@/helper/fetcher/postApi';
 import { getStringField } from '@/helper/submit';
 import { registerSchema } from '@/helper/validate';
 import { AccountIface } from '@/types/accountIface';
@@ -24,7 +25,7 @@ export default function Login() {
 
   useEffect(() => {
     if (!data) return;
-    console.log(data);
+    postRegister(data);
   }, [data]);
 
   return (
